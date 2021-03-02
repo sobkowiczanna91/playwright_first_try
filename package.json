@@ -1,0 +1,16 @@
+{
+  "name": "node_js_try",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expect": "^26.6.2",
+    "playwright": "^1.9.1"
+  }
+}
