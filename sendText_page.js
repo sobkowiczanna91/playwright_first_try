@@ -1,17 +1,16 @@
-const {chromium} = require("playwright");
-let expect = require('expect');
-
-class FirstPage {
-
-    constructor(page) {
-        this.page = page;
-    }
-
+class sendText_page {
+    page;
     url = 'https://www.seleniumeasy.com/test/basic-first-form-demo.html';
     popupXBtn = 'xpath=//*[@title=\'Close\']'
     userInput = 'xpath=//input[@id=\'user-message\']';
     showMsgBtn = 'xpath=//button[@onclick="showInput();"]';
     displayedText = 'xpath=//span[@id=\'display\']';
+
+
+    constructor(page) {
+        this.page = page;
+
+    }
 
     async navigate() {
         await this.page.goto(this.url);
@@ -24,9 +23,7 @@ class FirstPage {
 
     async inputTextToTextField(textToInput) {
         await this.page.click(this.userInput);
-        await this.page.screenshot(this.userInput);
         await this.page.type(this.userInput, textToInput);
-        await this.page.screenshot(this.userInput);
         console.log("Text filled: " + textToInput)
     }
 
@@ -41,17 +38,5 @@ class FirstPage {
         expect(userInput).toContain(textToInput);
     }
 
-} module.exports = { FirstPage };
+} module.exports = { sendText_page };
 
-
-(async () => {
-    const browser = await chromium.launch();
-    const page = await browser.newPage();
-    const firstPage1 = new FirstPage(page);
-    await firstPage1.navigate();
-    await firstPage1.closePopup();
-    await firstPage1.inputTextToTextField("bla bla")
-    await firstPage1.clickShowMessageButton()
-    await firstPage1.compareVisibleTextWithExpected("bla bla")
-    await browser.close();
-})();

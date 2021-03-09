@@ -1,16 +1,12 @@
-const {chromium} = require("playwright");
-let expect = require('expect');
-
 class CheckboxPage {
-
-    constructor(page) {
-        this.page = page;
-    }
-
+    page;
     url = 'https://www.seleniumeasy.com/test/basic-checkbox-demo.html';
     popupXBtn = 'xpath=//*[@title=\'Close\']'
     checkbox0 = 'xpath=//input[@id=\'isAgeSelected\']';
 
+    constructor(page) {
+        this.page = page;
+    }
 
     async navigate() {
         await this.page.goto(this.url);
@@ -35,16 +31,4 @@ class CheckboxPage {
 
 } module.exports = { CheckboxPage };
 
-
-(async () => {
-    const browser = await chromium.launch({headless: false, slowMo:20});
-    const page = await browser.newPage();
-    const firstPage1 = new CheckboxPage(page);
-    await firstPage1.navigate();
-    // await firstPage1.closePopup();
-    await firstPage1.checkO();
-    await page.screenshot();
-    await firstPage1.uncheckO();
-    await browser.close();
-})();
 
