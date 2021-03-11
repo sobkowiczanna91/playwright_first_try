@@ -1,6 +1,7 @@
 const {chromium} = require("playwright");
-const {CheckboxPage} = require("../checkbox_page");
-const {sendText_page} = require("../sendText_page");
+const {CheckboxPage} = require("../pages/CheckboxPage");
+const {SendTextPage} = require("../pages/SendTextPage");
+const {RadioButtonsPage} = require("../pages/RadioButtonsPage");
 
 let browser;
 let page;
@@ -23,19 +24,27 @@ afterEach(async () => {
 
 
 test ('Test to simply send text', async () => {
-    const sendtext_page = new sendText_page(page);
-    await sendtext_page.navigate();
-    await sendtext_page.closePopup();
-    await sendtext_page.inputTextToTextField("bla bla");
-    await sendtext_page.clickShowMessageButton();
-    await sendtext_page.compareVisibleTextWithExpected("bla bla");
+    const sendTextPage = new SendTextPage(page);
+    await sendTextPage.navigate();
+    await sendTextPage.closePopup();
+    await sendTextPage.inputTextToTextField("bla bla");
+    await sendTextPage.clickShowMessageButton();
+    await sendTextPage.compareVisibleTextWithExpected("bla bla");
 
 });
 
 
 test ('Test for basic checkbox', async () => {
-    const checkbox_page = new CheckboxPage(page);
-    await checkbox_page.navigate();
-    await checkbox_page.checkO();
-    await checkbox_page.uncheckO();
+    const checkboxPage = new CheckboxPage(page);
+    await checkboxPage.navigate();
+    await checkboxPage.checkO();
+    await checkboxPage.uncheckO();
+});
+
+test (" Test for simple radiobutton check", async () => {
+   const radiobuttonPage = new RadioButtonsPage(page);
+   await radiobuttonPage.navigate();
+   await radiobuttonPage.checkRadioButton("Female");
+   await radiobuttonPage.checkRadioButton("Male");
+
 });

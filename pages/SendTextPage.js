@@ -1,19 +1,15 @@
-class sendText_page {
-    page;
+const {CommonPage} = require("./CommonPage");
+
+class SendTextPage extends CommonPage {
+
     url = 'https://www.seleniumeasy.com/test/basic-first-form-demo.html';
     popupXBtn = 'xpath=//*[@title=\'Close\']'
     userInput = 'xpath=//input[@id=\'user-message\']';
     showMsgBtn = 'xpath=//button[@onclick="showInput();"]';
     displayedText = 'xpath=//span[@id=\'display\']';
 
-
     constructor(page) {
-        this.page = page;
-
-    }
-
-    async navigate() {
-        await this.page.goto(this.url);
+        super(page);
     }
 
     async closePopup() {
@@ -24,7 +20,7 @@ class sendText_page {
     async inputTextToTextField(textToInput) {
         await this.page.click(this.userInput);
         await this.page.type(this.userInput, textToInput);
-        console.log("Text filled: " + textToInput)
+        console.log("Text filled: " + textToInput);
     }
 
     async clickShowMessageButton() {
@@ -34,9 +30,9 @@ class sendText_page {
 
     async compareVisibleTextWithExpected(textToInput) {
         let userInput = await this.page.textContent(this.displayedText);
-        console.log("Text from page: " + userInput)
+        console.log("Text from page: " + userInput);
         expect(userInput).toContain(textToInput);
     }
 
-} module.exports = { sendText_page };
+} module.exports = { SendTextPage };
 
