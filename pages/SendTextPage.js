@@ -18,6 +18,7 @@ class SendTextPage extends CommonPage {
     }
 
     async inputTextToTextField(textToInput) {
+        //todo extract to common
         await this.page.click(this.userInput);
         await this.page.type(this.userInput, textToInput);
         console.log("Text filled: " + textToInput);
@@ -29,6 +30,7 @@ class SendTextPage extends CommonPage {
     }
 
     async compareVisibleTextWithExpected(textToInput) {
+        //todo extract to common
         let userInput = await this.page.textContent(this.displayedText);
         console.log("Text from page: " + userInput);
         expect(userInput).toContain(textToInput);
