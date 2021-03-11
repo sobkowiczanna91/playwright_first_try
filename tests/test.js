@@ -44,7 +44,7 @@ test ('Test for basic checkbox', async () => {
 test (" Test for simple radiobutton check", async () => {
    const radiobuttonPage = new RadioButtonsPage(page);
    await radiobuttonPage.navigate();
-   await radiobuttonPage.checkRadioButton("Female");
-   await radiobuttonPage.checkRadioButton("Male");
+   await radiobuttonPage.checkSRadioButton("Female");
+   await radiobuttonPage.checkSRadioButton("Male");
 
 });

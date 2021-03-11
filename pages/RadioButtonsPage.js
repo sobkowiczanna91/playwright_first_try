@@ -10,23 +10,18 @@ class RadioButtonsPage extends CommonPage{
         super(page);
     }
 
-    async checkRadioButton(option){
+    async checkSRadioButton(option){
         console.log("option to select: ", option)
 
-        expect(option == "Female" || option == "Male").toBe(true);
+        expect(option === "Female" || option === "Male").toBe(true);
 
         switch(option){
             case "Female":
                 console.log(option)
-                await this.page.check(this.radioButtonFemale);
-                console.log("option checked: " + await this.page.isChecked(this.radioButtonFemale));
-                expect(await this.page.isChecked(this.radioButtonFemale));
+                await this.checkRadiobutton(this.radioButtonFemale);
                 break;
             case "Male":
-                console.log(option)
-                await this.page.check(this.radioButtonMale);
-                console.log("option checked: " + await this.page.isChecked(this.radioButtonMale));
-                expect(await this.page.isChecked(this.radioButtonMale));
+                await this.checkRadiobutton(this.radioButtonMale);
                 break;
         }
     }
