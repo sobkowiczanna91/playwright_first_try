@@ -8,7 +8,7 @@ let browser;
 let page;
 
 beforeAll(async () => {
-    return browser = await chromium.launch({headless: true, slowMo:50, timeout:40000});
+    return browser = await chromium.launch({headless: false, slowMo:50, timeout:40000});
 });
 
 afterAll(async () => {
@@ -55,7 +55,13 @@ test ("Simple dropdown with days", async () => {
    await selectPage.navigate();
    await selectPage.selectDayFromDropdown("Monday");
    await selectPage.checkSelectedDayText("Monday");
+});
+
+test ("States dropdown", async () => {
+    //todo fixes needed
+   const selectPage = new SelectPage(page);
+   await selectPage.navigate();
    await selectPage.selectStateFromDropdown("Washington");
-   await selectPage.clickGetAllSelectedButton();
+   await selectPage.clickFirstSelectedButton();
    await selectPage.checkSelectedStateText("Washington");
 });

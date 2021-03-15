@@ -6,6 +6,7 @@ class SelectPage extends CommonPage{
     dayDropdown = "xpath=//select[@id='select-demo']"
     statesDropdown = "xpath=//select[@id='multi-select']"
     getAllSelectedButton = "xpath=//button[@id='printAll']"
+    firstSelectedButton = "xpath=//button[@id='printMe']"
     selectedDaysLabel = "xpath=//p[@class='selected-value']"
     selectedStatesLabel = "xpath=//p[text='getall-selected']"
 
@@ -33,16 +34,20 @@ class SelectPage extends CommonPage{
         console.log("actual selected States text: " + await this.page.textContent(this.selectedStatesLabel));
         let selectedDay = await this.page.textContent(this.selectedStatesLabel);
         expect(selectedDay).toContain(state);
-
     }
 
     async clickGetAllSelectedButton() {
-        //todo
-        await this.page.focus(this.getAllSelectedButton);
         console.log("actual getAllSelectedButton value: " + await this.page.textContent(this.getAllSelectedButton));
         await expect( await this.page.textContent(this.getAllSelectedButton)==="Get All Selected").toBeTruthy();
         await this.page.click(this.getAllSelectedButton);
         console.log("Get All Selected button clicked");
+    }
+
+    async clickFirstSelectedButton() {
+        console.log("actual firstSelectedButton value: " + await this.page.textContent(this.firstSelectedButton));
+        await expect( await this.page.textContent(this.firstSelectedButton)==="First Selected").toBeTruthy();
+        await this.page.click(this.firstSelectedButton);
+        console.log("First Selected button clicked");
     }
 
 } module.exports = {SelectPage}
