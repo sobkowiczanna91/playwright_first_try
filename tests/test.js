@@ -1,3 +1,4 @@
+const {SelectPage} = require("../pages/SelectPage");
 const {chromium} = require("playwright");
 const {CheckboxPage} = require("../pages/CheckboxPage");
 const {SendTextPage} = require("../pages/SendTextPage");
@@ -7,7 +8,7 @@ let browser;
 let page;
 
 beforeAll(async () => {
-    return browser = await chromium.launch({headless: false, slowMo:20});
+    return browser = await chromium.launch({headless: false, slowMo:50, timeout:40000});
 });
 
 afterAll(async () => {
@@ -47,4 +48,11 @@ test (" Test for simple radiobutton check", async () => {
    await radiobuttonPage.checkSRadioButton("Female");
    await radiobuttonPage.checkSRadioButton("Male");
 
+});
+
+test ("Simple dropdown with days", async () => {
+   const selectPage = new SelectPage(page);
+   await selectPage.navigate();
+   await selectPage.selectDayFromDropdown("Monday");
+   await selectPage.checkSelectedDayText("Monday");
 });

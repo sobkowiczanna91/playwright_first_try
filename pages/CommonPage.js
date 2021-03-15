@@ -8,8 +8,9 @@ class CommonPage{
     }
 
     async navigate() {
-        await this.page.goto(this.url);
+        await this.page.goto(this.url, {timeout: 40000, waitUntil:"load"} );
         console.log("Navigate to: ", this.url)
+        await this.page.waitForLoadState('load');
     }
 
     async checkCheckbox(checkbox){
