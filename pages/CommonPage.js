@@ -54,4 +54,19 @@ class CommonPage{
         expect(textFromField).toEqual(expectedText);
     }
 
+    async acceptVisibleModal() {
+        await this.page.on('dialog', async dialog => {
+            console.log(dialog.accept());
+        });
+        console.log("Modal accepted");
+    }
+
+    async dismissVisibleModal() {
+        await this.page.on('dialog', async dialog => {
+            console.log(dialog.dismiss());
+        });
+        console.log("Modal dismissed");
+    }
+
+
 } module.exports = {CommonPage}

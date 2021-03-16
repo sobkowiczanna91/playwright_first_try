@@ -4,6 +4,7 @@ const {CheckboxPage} = require("../pages/CheckboxPage");
 const {SendTextPage} = require("../pages/SendTextPage");
 const {RadioButtonsPage} = require("../pages/RadioButtonsPage");
 const {SubmitWithLoadingPage} = require("../pages/SubmitWithLoadingPage");
+const {ModalDemoPage} = require("../pages/ModalDemoPage");
 
 let browser;
 let page;
@@ -56,6 +57,16 @@ test ('Test for basic checkbox', async () => {
     await checkboxPage.navigate();
     await checkboxPage.checkO();
     await checkboxPage.uncheckO();
+});
+
+test ('Test for basic modal', async () => {
+    const ModalPage = new ModalDemoPage(page);
+    await ModalPage.navigate();
+    await ModalPage.clickLaunchModalForSingleModalExample();
+    await ModalPage.checkIfSingleModalIsVisible();
+    await ModalPage.clickSaveChangesButtonOnSingleModal();
+    await ModalPage.checkIfSingleModalIsNotVisible();
+
 });
 
 test (" Test for simple radiobutton check", async () => {
