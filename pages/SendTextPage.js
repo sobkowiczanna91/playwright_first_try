@@ -19,6 +19,7 @@ class SendTextPage extends CommonPage {
 
     async inputTextToTextField(textToInput) {
         await this.inputText(textToInput, this.userInput)
+        console.log("Text field filled")
     }
 
     async clickShowMessageButton() {
@@ -28,6 +29,7 @@ class SendTextPage extends CommonPage {
 
     async compareVisibleTextWithExpected(textToInput) {
         await this.verifyIfFieldTextContains(textToInput, this.displayedText);
+        console.log("Visible text verified")
     }
 
 } module.exports = { SendTextPage };

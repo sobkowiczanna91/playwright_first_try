@@ -31,7 +31,7 @@ class SelectPage extends CommonPage{
     }
 
     async checkSelectedStateText(state){
-        console.log("actual selected States text: " + await this.page.textContent(this.selectedStatesLabel));
+        console.log("Actual selected States text: " + await this.page.textContent(this.selectedStatesLabel));
         let selectedDay = await this.page.textContent(this.selectedStatesLabel);
         expect(selectedDay).toContain(state);
     }
@@ -44,7 +44,7 @@ class SelectPage extends CommonPage{
     }
 
     async clickFirstSelectedButton() {
-        console.log("actual firstSelectedButton value: " + await this.page.textContent(this.firstSelectedButton));
+        console.log("Actual firstSelectedButton value: " + await this.page.textContent(this.firstSelectedButton));
         await expect( await this.page.textContent(this.firstSelectedButton)==="First Selected").toBeTruthy();
         await this.page.click(this.firstSelectedButton);
         console.log("First Selected button clicked");

@@ -2,9 +2,9 @@ const {CommonPage} = require("./CommonPage");
 
 class CheckboxPage extends CommonPage{
 
-    url = 'https://www.seleniumeasy.com/test/basic-checkbox-demo.html';
-    popupXBtn = 'xpath=//*[@title=\'Close\']'
-    checkbox0 = 'xpath=//input[@id=\'isAgeSelected\']';
+    url = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html";
+    popupXBtn = "xpath=//*[@title='Close']"
+    checkbox0 = "xpath=//input[@id='isAgeSelected']";
 
     constructor(page) {
         super(page);

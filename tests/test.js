@@ -47,7 +47,7 @@ test ('Test to send text and wait for result', async () => {
     await sendTextPage.inputTextToNameField("Testing name");
     await sendTextPage.inputTextToCommentField("Testing comment");
     await sendTextPage.clickSubmitButton();
-    await sendTextPage.waitForResultAndCheck();
+    await sendTextPage.waitForSuccessfulResult();
 
 });
 

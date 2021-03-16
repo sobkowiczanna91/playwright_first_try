@@ -3,15 +3,15 @@ const {CommonPage} = require("./CommonPage");
 class RadioButtonsPage extends CommonPage{
 
     url = "https://www.seleniumeasy.com/test/basic-radiobutton-demo.html";
-    radioButtonMale = '//input[@value=\'Female\']';
-    radioButtonFemale = '//input[@value=\'Male\']';
+    radioButtonMale = "//input[@value='Female']";
+    radioButtonFemale = "//input[@value='Male']";
 
     constructor(page) {
         super(page);
     }
 
     async checkSRadioButton(option){
-        console.log("option to select: ", option)
+        console.log("Option to select: ", option)
 
         expect(option === "Female" || option === "Male").toBe(true);
 

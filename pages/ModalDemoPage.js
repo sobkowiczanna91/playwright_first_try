@@ -2,12 +2,12 @@ const {CommonPage} = require("./CommonPage");
 
 class ModalDemoPage extends CommonPage {
 
-    url = 'https://www.seleniumeasy.com/test/bootstrap-modal-demo.html';
-    singleModalContent  = 'xpath=//div[@id=\'myModal0\']';
-    multipleModalContent  = 'xpath=//div[@id=\'myModal\']';
-    singleModalSaveChangesBtn  = 'xpath=//*[@id="myModal0"]/div/div/div[4]/a[2]';
-    singleModalBtn  = 'xpath=//a[@href=\'#myModal0\']';
-    multipleModalBtn  = 'xpath=//a[@href=\'#myModal\']';
+    url = "https://www.seleniumeasy.com/test/bootstrap-modal-demo.html";
+    singleModalContent  = "xpath=//div[@id='myModal0']";
+    multipleModalContent  = "xpath=//div[@id='myModal']";
+    singleModalSaveChangesBtn  = "xpath=//*[@id='myModal0']/div/div/div[4]/a[2]";
+    singleModalBtn  = "xpath=//a[@href='#myModal0']";
+    multipleModalBtn  = "xpath=//a[@href='#myModal']";
 
     constructor(page) {
         super(page);
@@ -31,21 +31,25 @@ class ModalDemoPage extends CommonPage {
 
     async checkIfSingleModalIsVisible() {
         await this.page.waitForSelector(this.singleModalContent, {state: "visible"});
+        console.log("Single modal visibility: ",  await this.page.isVisible(this.singleModalContent));
         await expect(await this.page.isVisible(this.singleModalContent)).toBeTruthy();
     }
 
     async checkIfSingleModalIsNotVisible() {
-        await this.page.waitForSelector(this.singleModalContent, {state: "hidden"});
+        await this.page.waitForSelector(this.singleModalContent, {state: "hidden"})
+        console.log("Single modal visibility: ",  await this.page.isVisible(this.singleModalContent));
         await expect(await this.page.isVisible(this.singleModalContent)).toBeFalsy();
     }
 
     async checkIfMultipleModalIsVisible() {
         await this.page.waitForSelector(this.multipleModalContent, {state: "visible"});
+        console.log("Multiple modal visibility: ",  await this.page.isVisible(this.multipleModalContent));
         await expect(await this.page.isVisible(this.multipleModalContent)).toBeTruthy();
     }
 
     async checkIfMultipleModalIsNotVisible() {
         await this.page.waitForSelector(this.multipleModalContent, {state: "hidden"});
+        console.log("Multiple modal visibility: ",  await this.page.isVisible(this.multipleModalContent));
         await expect(await this.page.isVisible(this.multipleModalContent)).toBeFalsy();
     }
 
