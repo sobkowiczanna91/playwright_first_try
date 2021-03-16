@@ -3,31 +3,37 @@ const {CommonPage} = require("./CommonPage");
 class SubmitWithLoadingPage extends CommonPage {
 
     url = 'https://www.seleniumeasy.com/test/ajax-form-submit-demo.html';
-    popupXBtn = 'xpath=//*[@title=\'Close\']'
+    nameTitle = 'xpath=//input[@id=\'title\']'
+    comment = 'xpath=//textarea[@id=\'description\']'
+    submitBtn = 'xpath=//input[@id=\'btn-submit\']'
+    submitInfo = 'xpath=//div[@id=\'submit-control\']'
 
     constructor(page) {
         super(page);
     }
 
-    async inputTextToField(textToInput) {
-        //todo extract to common
-        await this.page.click(this.userInput);
-        await this.page.clear(this.userInput);
-        await this.page.type(this.userInput, textToInput);
-        console.log("Text filled: " + textToInput);
+    async inputTextToNameField(name) {
+        await this.inputText(name, this.nameTitle)
     }
 
-    async clickShowMessageButton() {
-        await this.page.click(this.showMsgBtn);
-        console.log("show message button clicked");
+    async inputTextToCommentField(name) {
+        await this.inputText(name, this.comment)
     }
 
-    async compareVisibleTextWithExpected(textToInput) {
-        //todo extract to common
-        let userInput = await this.page.textContent(this.displayedText);
-        console.log("Text from page: " + userInput);
-        expect(userInput).toContain(textToInput);
+    async clickSubmitButton() {
+        await this.page.click(this.submitBtn);
+        console.log("submit button clicked");
     }
+
+    async waitForResultAndCheck() {
+        await this.page.waitForSelector("xpath=//*[text()='Form submited Successfully!']", {state: "attached"});
+        await this.verifyIfFieldTextContains("Form submited Successfully!", this.submitInfo);
+    }
+
+    async checkNameFieldValidation() {
+        expect(await this.page.getAttribute(this.nameTitle, "style")).toBe("border: 1px solid rgb(255, 0, 0);")
+    }
+
 
 } module.exports = { SubmitWithLoadingPage };
 

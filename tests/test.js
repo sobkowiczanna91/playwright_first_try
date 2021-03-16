@@ -3,9 +3,13 @@ const {chromium} = require("playwright");
 const {CheckboxPage} = require("../pages/CheckboxPage");
 const {SendTextPage} = require("../pages/SendTextPage");
 const {RadioButtonsPage} = require("../pages/RadioButtonsPage");
+const {SubmitWithLoadingPage} = require("../pages/SubmitWithLoadingPage");
 
 let browser;
 let page;
+
+jest.setTimeout(50000);
+
 
 beforeAll(async () => {
     return browser = await chromium.launch({headless: false, slowMo:50, timeout:40000});
@@ -31,6 +35,18 @@ test ('Test to simply send text', async () => {
     await sendTextPage.inputTextToTextField("bla bla");
     await sendTextPage.clickShowMessageButton();
     await sendTextPage.compareVisibleTextWithExpected("bla bla");
+
+});
+
+test ('Test to send text and wait for result', async () => {
+    const sendTextPage = new SubmitWithLoadingPage(page);
+    await sendTextPage.navigate();
+    await sendTextPage.clickSubmitButton();
+    await sendTextPage.checkNameFieldValidation();
+    await sendTextPage.inputTextToNameField("Testing name");
+    await sendTextPage.inputTextToCommentField("Testing comment");
+    await sendTextPage.clickSubmitButton();
+    await sendTextPage.waitForResultAndCheck();
 
 });
 
