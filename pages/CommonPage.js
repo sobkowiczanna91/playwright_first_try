@@ -13,6 +13,12 @@ class CommonPage{
         await this.page.waitForLoadState('load');
     }
 
+    async inputText(textToInput, fieldToInput) {
+        await this.page.click(fieldToInput);
+        await this.page.type(fieldToInput, textToInput);
+        console.log("Text filled: " + textToInput);
+    }
+
     async checkCheckbox(checkbox){
         console.log("Checkbox to check: ", checkbox)
         expect(await this.page.isChecked(checkbox)).toBeFalsy();
@@ -36,5 +42,16 @@ class CommonPage{
         expect(await this.page.isChecked(radiobutton));
     }
 
+    async verifyIfFieldTextContains(expectedText, field) {
+        let textFromField = await this.page.textContent(field);
+        console.log("Text from page: " + textFromField);
+        expect(textFromField).toContain(expectedText);
+    }
+
+    async verifyIfFieldTextContains(expectedText, field) {
+        let textFromField = await this.page.textContent(field);
+        console.log("Text from page: " + textFromField);
+        expect(textFromField).toEqual(expectedText);
+    }
 
 } module.exports = {CommonPage}
