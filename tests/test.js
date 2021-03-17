@@ -1,3 +1,4 @@
+const {WindowPopup} = require("../pages/WindowPopup");
 const {AlertPage} = require("../pages/AlertPage");
 const {SelectPage} = require("../pages/SelectPage");
 const {chromium} = require("playwright");
@@ -9,6 +10,7 @@ const {ModalDemoPage} = require("../pages/ModalDemoPage");
 
 let browser;
 let page;
+let context;
 
 jest.setTimeout(50000);
 
@@ -22,6 +24,7 @@ afterAll(async () => {
 });
 
 beforeEach(async () => {
+    context = await browser.newContext();
     return page = await browser.newPage();
 });
 
@@ -107,6 +110,14 @@ test ("Simple dropdown with days", async () => {
    await selectPage.navigate();
    await selectPage.selectDayFromDropdown("Monday");
    await selectPage.checkSelectedDayText("Monday");
+});
+
+test ("Window popup simple test", async () => {
+    const windowPopup = new WindowPopup(page);
+    await windowPopup.navigate();
+    await windowPopup.clickFollowOnTwitterBtn()
+    await windowPopup.checkIfTwitterFollowPageIsOpened()
+    await windowPopup.closeTwitterFollowPage()
 });
 
 test ("States dropdown", async () => {

@@ -8,7 +8,7 @@ class SelectPage extends CommonPage{
     getAllSelectedButton = "xpath=//button[@id='printAll']"
     firstSelectedButton = "xpath=//button[@id='printMe']"
     selectedDaysLabel = "xpath=//p[@class='selected-value']"
-    selectedStatesLabel = "xpath=//p[text='getall-selected']"
+    selectedStatesLabel = "xpath=//p[text()='getall-selected']"
 
     constructor(page) {
         super(page);
