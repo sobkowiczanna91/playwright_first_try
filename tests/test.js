@@ -1,3 +1,4 @@
+const {AlertPage} = require("../pages/AlertPage");
 const {SelectPage} = require("../pages/SelectPage");
 const {chromium} = require("playwright");
 const {CheckboxPage} = require("../pages/CheckboxPage");
@@ -67,6 +68,30 @@ test ('Test for basic modal', async () => {
     await ModalPage.clickSaveChangesButtonOnSingleModal();
     await ModalPage.checkIfSingleModalIsNotVisible();
 
+});
+
+
+test ('Test for basic alert', async () => {
+    const alertPage = new AlertPage(page);
+    await alertPage.navigate();
+    await alertPage.clickButton("Alert");
+    await alertPage.acceptVisibleModal();
+});
+
+test ('Test for basic confirm box', async () => {
+    const alertPage = new AlertPage(page);
+    await alertPage.navigate();
+    await alertPage.clickButton("Confirm Box");
+    await alertPage.acceptVisibleModal();
+    await alertPage.clickButton("Confirm Box");
+    await alertPage.dismissVisibleModal();
+});
+
+test ('Test for basic prompt', async () => {
+    const alertPage = new AlertPage(page);
+    await alertPage.navigate();
+    await alertPage.clickButton("Prompt");
+    await alertPage.dismissVisibleModal();
 });
 
 test (" Test for simple radiobutton check", async () => {

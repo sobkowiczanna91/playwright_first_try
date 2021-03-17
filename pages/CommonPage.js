@@ -48,7 +48,7 @@ class CommonPage{
         expect(textFromField).toContain(expectedText);
     }
 
-    async verifyIfFieldTextContains(expectedText, field) {
+    async verifyIfFieldTextEquals(expectedText, field) {
         let textFromField = await this.page.textContent(field);
         console.log("Text from page: " + textFromField);
         expect(textFromField).toEqual(expectedText);
